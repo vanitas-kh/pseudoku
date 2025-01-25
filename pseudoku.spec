@@ -5,7 +5,7 @@ a = Analysis(
     ['pseudoku.py'],
     pathex=[],
     binaries=[],
-    datas=[],
+    datas=[('pseudoku.ico', '.')],
     hiddenimports=[],
     hookspath=[],
     hooksconfig={},

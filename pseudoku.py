@@ -1,5 +1,17 @@
 import tkinter as tk
 from tkinter import messagebox
+import sys
+import os
+
+
+def resource_path(relative_path):
+    """ Get the absolute path to a resource, works for PyInstaller bundles """
+    try:
+        base_path = sys._MEIPASS
+    except AttributeError:
+        base_path = os.path.abspath(".")
+
+    return os.path.join(base_path, relative_path)
 
 
 def is_valid(board, row, col, num):
@@ -123,6 +135,7 @@ def show_about():
     # Create a top-level window
     about_window = tk.Toplevel(root)
     about_window.title("About Pseudoku Solver")
+    about_window.iconbitmap(resource_path("pseudoku.ico"))
 
     # Set the window size and position it relative to the main window
     about_window.geometry("550x250+{}+{}".format(
@@ -154,6 +167,7 @@ def show_about():
 # Create the main window
 root = tk.Tk()
 root.title("Pseudoku Solver")
+root.iconbitmap(resource_path("pseudoku.ico"))
 
 # Configure the grid to make it resizable
 for i in range(9):
