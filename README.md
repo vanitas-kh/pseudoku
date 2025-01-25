@@ -105,19 +105,7 @@ You can also create a standalone executable for macOS or Linux using PyInstaller
   - Go to **System Preferences > Security & Privacy > General**.
   - Allow the app under "Allow apps downloaded from".
 
----
-
-### Steps
-
-1. **Clone the Repository**:
-   
-    ```
-    git clone https://github.com/vanitas-kh/pseudoku.git
-   
-    cd pseudoku
-    ```
-
-3. **Run the Application**:
+- **Windows**: Locate the .exe file or simply run the script:
    
    ```python pseudoku.py```
 
