@@ -106,17 +106,54 @@ def user_input_gui():
             "No Solution", "No solution exists for the given board.")
 
 
-# Create the main window
-root = tk.Tk()
-root.title("Pseudoku Solver")
-
-
 def clear_grid():
+    """
+    Clear all entry widgets in the Sudoku grid.
+    """
     for row in entry_grid:
         for entry in row:
             entry.delete(0, tk.END)
     messagebox.showinfo("Board Cleared", "The board has been cleared.")
 
+
+def show_about():
+    """
+    Display information about the program in a non-modal top-level window.
+    """
+    # Create a top-level window
+    about_window = tk.Toplevel(root)
+    about_window.title("About Pseudoku Solver")
+
+    # Set the window size and position it relative to the main window
+    about_window.geometry("550x250+{}+{}".format(
+        root.winfo_x() + 200, root.winfo_y() + 50
+    ))
+
+    # Lock the resizing of the window
+    about_window.resizable(False, False)
+
+    # Add the "About" text
+    about_text = (
+        "Pseudoku (Sudoku Solver) by vanitas-kh\n\n"
+        "Version: 1.0\n\n"
+        "Description: A simple Sudoku solver that uses a backtracking algorithm to solve Sudoku puzzles.\n\n"
+        "Contact: For more information, visit https://github.com/vanitas-kh/pseudoku\n\n"
+        "License: This software is licensed under the MIT License.\n\n"
+        "Acknowledgements: Thanks to the open-source community for their contributions."
+    )
+    about_label = tk.Label(about_window, text=about_text,
+                           justify="left", padx=5, pady=10)
+    about_label.pack()
+
+    # Add a "Close" button
+    close_button = tk.Button(about_window, text="Close",
+                             command=about_window.destroy, font=("Arial", 12))
+    close_button.pack(pady=10)
+
+
+# Create the main window
+root = tk.Tk()
+root.title("Pseudoku Solver")
 
 # Configure the grid to make it resizable
 for i in range(9):
@@ -149,6 +186,11 @@ solve_button.grid(row=9, column=2, columnspan=2, pady=10, sticky="ns")
 clear_button = tk.Button(
     root, text="Clear", command=clear_grid, font=("Arial", 16))
 clear_button.grid(row=9, column=5, columnspan=2, pady=10, sticky="ns")
+
+# Create an "About" button
+about_button = tk.Button(
+    root, text="About", command=show_about, font=("Arial", 8))
+about_button.grid(row=9, column=8, columnspan=1, pady=16, sticky="ns")
 
 # Run the Tkinter event loop
 root.mainloop()
